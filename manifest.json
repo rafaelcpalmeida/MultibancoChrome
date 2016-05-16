@@ -1,0 +1,15 @@
+{
+  "manifest_version": 2,
+  "name": "Multibanco (IfthenPay Gateway)",
+  "description": "Extensão para gerar, usando o serviço da IfthenPay, e verificar referências Multibanco",
+  "version": "1.0",
+  "icons": {
+    "16": "images/icon16.png",
+    "48": "images/icon48.png",
+    "128": "images/icon128.png"
+  },
+  "browser_action": {
+    "default_icon": "images/icon.png",
+    "default_popup": "popup.html"
+  }
+}

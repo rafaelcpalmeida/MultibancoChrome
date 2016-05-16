@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+	<link rel="stylesheet" type="text/css" href="css/jquery-ui.min.css" />
+</head>
+
+<body>
+    <h1>Referências Multibanco</h1>
+    <div id="tabs">
+        <ul>
+            <li><a href="#verificar">Validar Referência</a></li>
+            <li><a href="#gerar">Gerar Referência</a></li>
+            <li><a href="#configurar">Configurações</a></li>
+        </ul>
+        <div id="verificar">
+            <form>
+                <label for="entidadeVerifica">Entidade</label>
+                <input type="number" min="1" max="99999" id="entidadeVerifica">
+                <label for="referenciaVerifica">Referência</label>
+                <input type="number" min="111111111" max="999999999" id="referenciaVerifica">
+                <label for="valorVerifica">Valor</label>
+                <input type="number" min="1" max="99999" id="valorVerifica">
+                <input type="button" value="Verificar" id="verificarReferencia">
+            </form>
+        </div>
+        <div id="gerar">
+            <form>
+                <label for="idGerar">ID</label>
+                <input type="number" min="1" max="9999" id="idGerar">
+                <label for="valorGerar">Valor</label>
+                <input type="number" min="1" max="99999" id="valorGerar">
+                <input type="button" value="Gerar" id="gerarReferencia">
+                <hr/>
+                <label for="entidadeGerar">Entidade</label>
+                <input type="number" min="1" max="99999" id="entidadeGerar" readonly>
+                <label for="referenciaGerar">Referência</label>
+                <input type="text" min="111111111" max="999999999" id="referenciaGerar" readonly>
+                <label for="valorGerado">Valor</label>
+                <input type="number" min="1" max="99999" id="valorGerado" readonly>
+            </form>
+        </div>
+        <div id="configurar">
+            <form>
+                <label for="entidadeConfiguracao">Entidade</label>
+                <input type="number" min="1" max="99999" id="entidadeConfiguracao">
+                <label for="subentidadeConfiguracao">Subentidade</label>
+                <input type="number" min="1" max="999" id="subentidadeConfiguracao">
+                <input type="button" value="Guardar" id="guardar">
+            </form>
+            <div id="notice">
+                Deverá utilizar a Entidade e Sub-entidade cedidas pela IfthenPay aquando assinatura do contrato.<br/><br/>Para mais informações clique <a href="http://www.ifthenpay.com" target="_blank">aqui</a>.
+            </div>
+        </div>
+    </div>
+    <script src="js/jquery.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/mb.js"></script>
+</body>
