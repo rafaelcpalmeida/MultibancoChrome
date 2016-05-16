@@ -24,6 +24,7 @@
                 <input type="number" min="1" max="99999" id="valorVerifica">
                 <input type="button" value="Verificar" id="verificarReferencia">
             </form>
+            <div class="message" id="messageVerificar"></div>
         </div>
         <div id="gerar">
             <form>
@@ -40,6 +41,7 @@
                 <label for="valorGerado">Valor</label>
                 <input type="number" min="1" max="99999" id="valorGerado" readonly>
             </form>
+            <div class="message" id="messageGerar"></div>
         </div>
         <div id="configurar">
             <form>
@@ -47,8 +49,9 @@
                 <input type="number" min="1" max="99999" id="entidadeConfiguracao">
                 <label for="subentidadeConfiguracao">Subentidade</label>
                 <input type="number" min="1" max="999" id="subentidadeConfiguracao">
-                <input type="button" value="Guardar" id="guardar">
+                <input type="button" value="Guardar" id="guardarDados">
             </form>
+            <div class="message" id="messageGuardar"></div>
             <div id="notice">
                 Deverá utilizar a Entidade e Sub-entidade cedidas pela IfthenPay aquando assinatura do contrato.<br/><br/>Para mais informações clique <a href="http://www.ifthenpay.com" target="_blank">aqui</a>.
             </div>

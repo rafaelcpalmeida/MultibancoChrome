@@ -14,10 +14,6 @@ input {
     box-sizing: border-box;
 }
 
-textarea {
-    display: none;
-}
-
 #guardar {
     width: 100%;
     display: block;
@@ -26,6 +22,12 @@ textarea {
 #tabs {
     position: relative;
     min-height: 400px;
+}
+
+.message {
+    text-align: center;
+    font-size: 40px;
+    padding-top: 50px;
 }
 
 #notice {
