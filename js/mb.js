@@ -1,5 +1,14 @@
 $(function () {
     $("#tabs").tabs();
+    
+    $("#dataForm").dialog({
+        autoOpen: false,
+        buttons: {
+            "Ok": function() {
+                $(this).dialog("close");
+            },
+        }
+    });
 
     chrome.storage.local.get('mbEntidade', function (items) {
         $("#entidadeConfiguracao").val(items.mbEntidade);
@@ -39,7 +48,7 @@ $(function () {
                 subentidade = items.mbSubentidade;
                 if (subentidade > 0) {
                 } else {
-                    if (attempts < 10) {
+                    if (attempts < 5) {
                         setTimeout(waitForSubentidade, 500);
                         attempts++;
                     } else {
@@ -51,7 +60,7 @@ $(function () {
 
 
         (function waitForReadyState() {
-            if (subentidade > 0) {
+            if (entidade > 0 && subentidade > 0) {
                 if (valor > 0 && id > 0 && entidade > 0 && subentidade > 0) {
                     if(valor < 999999) {
                         var ref = GetPaymentRef(entidade, subentidade, id, valor);
@@ -66,7 +75,7 @@ $(function () {
                     $("#messageGerar").text("Campos em falta!").css("color", "#FF0000");
                 }
             } else {
-                if (attempts < 10) {
+                if (attempts < 5) {
                     setTimeout(waitForReadyState, 500);
                 } else {
                     clearTimeout(waitForReadyState);
@@ -78,9 +87,17 @@ $(function () {
     
     $("#copiarReferencia").on('click', function () {
         if($("#entidadeGerar").val() != "" && $("#referenciaGerar").val() != "" && $("#valorGerado").val() != "") {
-            var refStr = "Entidade: " + $("#entidadeGerar").val() + " Referência: " + $("#referenciaGerar").val() + " Valor: " + $("#valorGerado").val();
-            prompt("Copiar:",refStr);
+            var refStr = "Entidade: " + $("#entidadeGerar").val() + "\nReferência: " + $("#referenciaGerar").val() + "\nValor: " + $("#valorGerado").val() + "€";
+            $("#data").text($("#data").text() + refStr);
+            $("#dataForm").dialog("open");
+            $("#data").select();
         }
+    });
+    
+    $('#data').keypress(function(e) {
+      if(e.which == 13) {
+      	$("#dataForm").dialog("close");
+      }
     });
 
     $("#verificarReferencia").on('click', function () {
@@ -113,7 +130,7 @@ $(function () {
         var entidade = $("#entidadeConfiguracao").val();
         var subentidade = $("#subentidadeConfiguracao").val();
 
-        if (entidade > 0 && subentidade > 0) {
+        if (entidade > 0 && subentidade > 0 && entidade.length == 5 && subentidade.length == 3) {
             chrome.storage.local.set({ 'mbEntidade': entidade }, function () { });
             chrome.storage.local.set({ 'mbSubentidade': subentidade }, function () { });
         } else {
