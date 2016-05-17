@@ -1,10 +1,10 @@
 $(function () {
     $("#tabs").tabs();
-    
+
     $("#dataForm").dialog({
         autoOpen: false,
         buttons: {
-            "Ok": function() {
+            "Ok": function () {
                 $(this).dialog("close");
             },
         }
@@ -62,7 +62,7 @@ $(function () {
         (function waitForReadyState() {
             if (entidade > 0 && subentidade > 0) {
                 if (valor > 0 && id > 0 && entidade > 0 && subentidade > 0) {
-                    if(valor < 999999) {
+                    if (valor < 999999) {
                         var ref = GetPaymentRef(entidade, subentidade, id, valor);
 
                         $("#entidadeGerar").val(ref["entidade"]);
@@ -84,20 +84,21 @@ $(function () {
             }
         })();
     });
-    
+
     $("#copiarReferencia").on('click', function () {
-        if($("#entidadeGerar").val() != "" && $("#referenciaGerar").val() != "" && $("#valorGerado").val() != "") {
+        if ($("#entidadeGerar").val() != "" && $("#referenciaGerar").val() != "" && $("#valorGerado").val() != "") {
             var refStr = "Entidade: " + $("#entidadeGerar").val() + "\nReferência: " + $("#referenciaGerar").val() + "\nValor: " + $("#valorGerado").val() + "€";
+            $("#data").empty();
             $("#data").text($("#data").text() + refStr);
             $("#dataForm").dialog("open");
             $("#data").select();
         }
     });
-    
-    $('#data').keypress(function(e) {
-      if(e.which == 13) {
-      	$("#dataForm").dialog("close");
-      }
+
+    $('#data').keypress(function (e) {
+        if (e.which == 13) {
+            $("#dataForm").dialog("close");
+        }
     });
 
     $("#verificarReferencia").on('click', function () {
