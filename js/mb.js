@@ -23,12 +23,10 @@ $(function () {
             (function waitForEntidade() {
                 entidade = items.mbEntidade;
                 if (entidade > 0) {
-                    console.log(entidade);
                 } else {
                     if (attempts < 5) {
                         setTimeout(waitForEntidade, 500);
                         attempts++;
-                        console.log(entidade);
                     } else {
                         clearTimeout(waitForEntidade);
                     }
@@ -40,12 +38,10 @@ $(function () {
             (function waitForSubentidade() {
                 subentidade = items.mbSubentidade;
                 if (subentidade > 0) {
-                    console.log(subentidade);
                 } else {
                     if (attempts < 10) {
                         setTimeout(waitForSubentidade, 500);
                         attempts++;
-                        console.log(subentidade);
                     } else {
                         clearTimeout(waitForSubentidade);
                     }
@@ -57,11 +53,15 @@ $(function () {
         (function waitForReadyState() {
             if (subentidade > 0) {
                 if (valor > 0 && id > 0 && entidade > 0 && subentidade > 0) {
-                    var ref = GetPaymentRef(entidade, subentidade, id, valor);
+                    if(valor < 999999) {
+                        var ref = GetPaymentRef(entidade, subentidade, id, valor);
 
-                    $("#entidadeGerar").val(ref["entidade"]);
-                    $("#referenciaGerar").val(ref["referencia"]);
-                    $("#valorGerado").val(ref["valor"]);
+                        $("#entidadeGerar").val(ref["entidade"]);
+                        $("#referenciaGerar").val(ref["referencia"]);
+                        $("#valorGerado").val(ref["valor"]);
+                    } else {
+                        $("#messageGerar").text("Valor máximo 999999!").css("color", "#FF0000");
+                    }
                 } else {
                     $("#messageGerar").text("Campos em falta!").css("color", "#FF0000");
                 }
@@ -74,6 +74,13 @@ $(function () {
                 }
             }
         })();
+    });
+    
+    $("#copiarReferencia").on('click', function () {
+        if($("#entidadeGerar").val() != "" && $("#referenciaGerar").val() != "" && $("#valorGerado").val() != "") {
+            var refStr = "Entidade: " + $("#entidadeGerar").val() + " Referência: " + $("#referenciaGerar").val() + " Valor: " + $("#valorGerado").val();
+            prompt("Copiar:",refStr);
+        }
     });
 
     $("#verificarReferencia").on('click', function () {

@@ -14,6 +14,22 @@ input {
     box-sizing: border-box;
 }
 
+.half {
+    width: 49%;
+}
+
+.right {
+    float: right;
+}
+
+.left {
+    float: left;
+}
+
+.clear {
+    clear: both;
+}
+
 #guardar {
     width: 100%;
     display: block;
