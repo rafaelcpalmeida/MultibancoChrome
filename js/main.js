@@ -24,7 +24,7 @@ $(function () {
         $("#messageGerar").empty();
 
         var id = $("#idGerar").val();
-        var valor = $("#valorGerar").val()
+        var valor = $("#valorGerar").val();
 
         var entidade;
         var subentidade;
@@ -33,8 +33,7 @@ $(function () {
         entidade = chrome.storage.local.get("mbEntidade", function (items) {
             (function waitForEntidade() {
                 entidade = items.mbEntidade;
-                if (entidade > 0) {
-                } else {
+                if (entidade < 0) {
                     if (attempts < 5) {
                         setTimeout(waitForEntidade, 500);
                         attempts++;
@@ -48,8 +47,7 @@ $(function () {
         chrome.storage.local.get("mbSubentidade", function (items) {
             (function waitForSubentidade() {
                 subentidade = items.mbSubentidade;
-                if (subentidade > 0) {
-                } else {
+                if (subentidade < 0) {
                     if (attempts < 5) {
                         setTimeout(waitForSubentidade, 500);
                         attempts++;
@@ -65,7 +63,7 @@ $(function () {
             if (entidade > 0 && subentidade > 0) {
                 if (valor > 0 && id > 0 && entidade > 0 && subentidade > 0) {
                     if (valor < 999999) {
-                        var ref = mb.GetPaymentRef(entidade, subentidade, id, valor);
+                        var ref = mb.getPaymentRef(entidade, subentidade, id, valor);
 
                         $("#entidadeGerar").val(ref["entidade"]);
                         $("#referenciaGerar").val(ref["referencia"]);
@@ -115,7 +113,7 @@ $(function () {
             var subentidade = referencia.substring(0, 3);
             var id = referencia.substring(3, 7);
 
-            var referenciaGerada = mb.GetPaymentRef(entidade, subentidade, id, valor);
+            var referenciaGerada = mb.getPaymentRef(entidade, subentidade, id, valor);
 
             if (referencia.replace(/\s/g, "") == referenciaGerada["referencia"].replace(/\s/g, "")) {
                 $("#messageVerificar").text("Referência válida").css("color", "#007F00");

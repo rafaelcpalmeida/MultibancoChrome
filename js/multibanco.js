@@ -1,6 +1,6 @@
 var Multibanco = function() { };
 
-Multibanco.prototype.GetPaymentRef = function(_ENTIDADE, _SUBENTIDADE, _ID, _VALOR) {
+Multibanco.prototype.getPaymentRef = function(_ENTIDADE, _SUBENTIDADE, _ID, _VALOR) {
 
     var ENT_CALC = (51 * parseInt(String(_ENTIDADE).charAt(0)) +
         73 * parseInt(String(_ENTIDADE).charAt(1)) +
@@ -11,7 +11,7 @@ Multibanco.prototype.GetPaymentRef = function(_ENTIDADE, _SUBENTIDADE, _ID, _VAL
     var iCHECKDIGITS = 0;
     var sTMP = "";
 
-    sTMP = String(this.Right("000" + _SUBENTIDADE.toString(), 3) + this.Right("0000" + _ID.toString(), 4) + this.Right("00000000" + (parseFloat(_VALOR) * 100).toFixed(0), 8));
+    sTMP = String(this.right("000" + _SUBENTIDADE.toString(), 3) + this.right("0000" + _ID.toString(), 4) + this.right("00000000" + (parseFloat(_VALOR) * 100).toFixed(0), 8));
 
     //Calculate check digits
     iCHECKDIGITS =
@@ -32,18 +32,19 @@ Multibanco.prototype.GetPaymentRef = function(_ENTIDADE, _SUBENTIDADE, _ID, _VAL
             45 * parseInt(sTMP.charAt(1)) +
             62 * parseInt(sTMP.charAt(0))) % 97;
 
-    var _PaymentRef = this.Right("000" + _SUBENTIDADE, 3) + " " + this.Mid(this.Right("0000" + _ID, 4), 0, 3) + " " + this.Mid(this.Right("0000" + _ID, 4), 3, 1) + this.Right("00" + iCHECKDIGITS.toString(), 2);
+    var _PaymentRef = this.right("000" + _SUBENTIDADE, 3) + " " + this.mid(this.right("0000" + _ID, 4), 0, 3) + " " + this.mid(this.right("0000" + _ID, 4), 3, 1) + this.right("00" + iCHECKDIGITS.toString(), 2);
 
     return { "entidade": _ENTIDADE, "referencia": _PaymentRef, "valor": _VALOR };
-}
+};
 
 //Mid Function
-Multibanco.prototype.Mid = function(value, index, n) {
+Multibanco.prototype.mid = function(value, index, n) {
     var result = String(value).substring(index, index + n);
     return result;
-}
+};
+
 //Right function
-Multibanco.prototype.Right = function(value, n) {
+Multibanco.prototype.right = function(value, n) {
     var result = String(value).substring(String(value).length, String(value).length - n);
     return result;
-}
+};
