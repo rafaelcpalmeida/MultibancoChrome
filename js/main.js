@@ -60,19 +60,15 @@ $(function () {
 
 
         (function waitForReadyState() {
-            if (entidade > 0 && subentidade > 0) {
-                if (valor > 0 && id > 0 && entidade > 0 && subentidade > 0) {
-                    if (valor < 999999) {
-                        var ref = mb.getPaymentRef(entidade, subentidade, id, valor);
+            if (valor > 0 && id > 0 && entidade > 0 && subentidade > 0) {
+                if (valor < 999999) {
+                    var ref = mb.getPaymentRef(entidade, subentidade, id, valor);
 
-                        $("#entidadeGerar").val(ref["entidade"]);
-                        $("#referenciaGerar").val(ref["referencia"]);
-                        $("#valorGerado").val(ref["valor"]);
-                    } else {
-                        $("#messageGerar").text("Valor máximo 999999!").css("color", "#FF0000");
-                    }
+                    $("#entidadeGerar").val(ref["entidade"]);
+                    $("#referenciaGerar").val(ref["referencia"]);
+                    $("#valorGerado").val(ref["valor"]);
                 } else {
-                    $("#messageGerar").text("Campos em falta!").css("color", "#FF0000");
+                    $("#messageGerar").text("Valor máximo 999999!").css("color", "#FF0000");
                 }
             } else {
                 if (attempts < 5) {
