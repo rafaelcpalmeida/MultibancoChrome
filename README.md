@@ -1,5 +1,7 @@
 IfthenPay gateway for Google Chrome
 ==============
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/2f63bcef152f4d9384004b1ab5c33575)](https://www.codacy.com/app/rafaelcpalmeida/MultibancoChrome?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=rafaelcpalmeida/MultibancoChrome&amp;utm_campaign=Badge_Grade)
+
 ![Multibanco](https://raw.githubusercontent.com/ifthenpay/omnipay-ifthenpay/master/mb.png)
 
 Multibanco is one Portuguese payment method that allows the customer to pay by bank reference.
