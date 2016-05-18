@@ -86,7 +86,7 @@ $(function () {
     });
 
     $("#copiarReferencia").on("click", function () {
-        if ($("#entidadeGerar").val() != "" && $("#referenciaGerar").val() != "" && $("#valorGerado").val() != "") {
+        if ($("#entidadeGerar").val() !== "" && $("#referenciaGerar").val() !== "" && $("#valorGerado").val() !== "") {
             var refStr = "Entidade: " + $("#entidadeGerar").val() + "\nReferência: " + $("#referenciaGerar").val() + "\nValor: " + $("#valorGerado").val() + "€";
             $("#data").empty();
             $("#data").text($("#data").text() + refStr);
@@ -96,7 +96,7 @@ $(function () {
     });
 
     $("#data").keypress(function (e) {
-        if (e.which == 13) {
+        if (e.which === 13) {
             $("#dataForm").dialog("close");
         }
     });
@@ -115,7 +115,7 @@ $(function () {
 
             var referenciaGerada = mb.getPaymentRef(entidade, subentidade, id, valor);
 
-            if (referencia.replace(/\s/g, "") == referenciaGerada["referencia"].replace(/\s/g, "")) {
+            if (referencia.replace(/\s/g, "") === referenciaGerada["referencia"].replace(/\s/g, "")) {
                 $("#messageVerificar").text("Referência válida").css("color", "#007F00");
             } else {
                 $("#messageVerificar").text("Referência inválida").css("color", "#FF0000");
@@ -131,7 +131,7 @@ $(function () {
         var entidade = $("#entidadeConfiguracao").val();
         var subentidade = $("#subentidadeConfiguracao").val();
 
-        if (entidade > 0 && subentidade > 0 && entidade.length == 5 && subentidade.length == 3) {
+        if (entidade > 0 && subentidade > 0 && entidade.length === 5 && subentidade.length === 3) {
             chrome.storage.local.set({ "mbEntidade": entidade }, function () { });
             chrome.storage.local.set({ "mbSubentidade": subentidade }, function () { });
         } else {
