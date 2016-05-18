@@ -12,15 +12,15 @@ $(function () {
         }
     });
 
-    chrome.storage.local.get('mbEntidade', function (items) {
+    chrome.storage.local.get("mbEntidade", function (items) {
         $("#entidadeConfiguracao").val(items.mbEntidade);
     });
 
-    chrome.storage.local.get('mbSubentidade', function (items) {
+    chrome.storage.local.get("mbSubentidade", function (items) {
         $("#subentidadeConfiguracao").val(items.mbSubentidade);
     });
 
-    $("#gerarReferencia").on('click', function () {
+    $("#gerarReferencia").on("click", function () {
         $("#messageGerar").empty();
 
         var id = $("#idGerar").val();
@@ -30,7 +30,7 @@ $(function () {
         var subentidade;
         var attempts = 0;
 
-        entidade = chrome.storage.local.get('mbEntidade', function (items) {
+        entidade = chrome.storage.local.get("mbEntidade", function (items) {
             (function waitForEntidade() {
                 entidade = items.mbEntidade;
                 if (entidade > 0) {
@@ -45,7 +45,7 @@ $(function () {
             })();
         });
 
-        chrome.storage.local.get('mbSubentidade', function (items) {
+        chrome.storage.local.get("mbSubentidade", function (items) {
             (function waitForSubentidade() {
                 subentidade = items.mbSubentidade;
                 if (subentidade > 0) {
@@ -87,7 +87,7 @@ $(function () {
         })();
     });
 
-    $("#copiarReferencia").on('click', function () {
+    $("#copiarReferencia").on("click", function () {
         if ($("#entidadeGerar").val() != "" && $("#referenciaGerar").val() != "" && $("#valorGerado").val() != "") {
             var refStr = "Entidade: " + $("#entidadeGerar").val() + "\nReferência: " + $("#referenciaGerar").val() + "\nValor: " + $("#valorGerado").val() + "€";
             $("#data").empty();
@@ -97,13 +97,13 @@ $(function () {
         }
     });
 
-    $('#data').keypress(function (e) {
+    $("#data").keypress(function (e) {
         if (e.which == 13) {
             $("#dataForm").dialog("close");
         }
     });
 
-    $("#verificarReferencia").on('click', function () {
+    $("#verificarReferencia").on("click", function () {
         $("#messageVerificar").empty();
 
         var entidade = $("#entidadeVerifica").val();
@@ -127,15 +127,15 @@ $(function () {
         }
     });
 
-    $("#guardarDados").on('click', function () {
+    $("#guardarDados").on("click", function () {
         $("#messageGuardar").empty();
 
         var entidade = $("#entidadeConfiguracao").val();
         var subentidade = $("#subentidadeConfiguracao").val();
 
         if (entidade > 0 && subentidade > 0 && entidade.length == 5 && subentidade.length == 3) {
-            chrome.storage.local.set({ 'mbEntidade': entidade }, function () { });
-            chrome.storage.local.set({ 'mbSubentidade': subentidade }, function () { });
+            chrome.storage.local.set({ "mbEntidade": entidade }, function () { });
+            chrome.storage.local.set({ "mbSubentidade": subentidade }, function () { });
         } else {
             $("#messageGuardar").text("Campos em falta!").css("color", "#FF0000");
         }
