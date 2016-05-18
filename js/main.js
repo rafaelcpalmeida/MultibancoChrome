@@ -6,7 +6,7 @@ $(function () {
     $("#dataForm").dialog({
         autoOpen: false,
         buttons: {
-            "Ok": function () {
+            "Ok": () => {
                 $(this).dialog("close");
             },
         }
