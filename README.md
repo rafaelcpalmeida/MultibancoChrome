@@ -2,6 +2,9 @@ IfthenPay gateway for Google Chrome
 ==============
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/2f63bcef152f4d9384004b1ab5c33575)](https://www.codacy.com/app/rafaelcpalmeida/MultibancoChrome?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=rafaelcpalmeida/MultibancoChrome&amp;utm_campaign=Badge_Grade)
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/v/lagljhmfaccllemjdkhkkccofllmpgdh.svg?maxAge=2592000)](https://img.shields.io/chrome-web-store/v/lagljhmfaccllemjdkhkkccofllmpgdh.svg)
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/rating-count/lagljhmfaccllemjdkhkkccofllmpgdh.svg?maxAge=2592000)]()
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/rating/lagljhmfaccllemjdkhkkccofllmpgdh.svg?maxAge=2592000)]()
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/d/lagljhmfaccllemjdkhkkccofllmpgdh.svg?maxAge=2592000)]()
 
 ![Multibanco](https://raw.githubusercontent.com/ifthenpay/omnipay-ifthenpay/master/mb.png)
 
