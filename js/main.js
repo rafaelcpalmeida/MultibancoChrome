@@ -41,7 +41,7 @@ $(function () {
                         clearTimeout(waitForEntidade);
                     }
                 }
-            })();
+            }());
         });
 
         chrome.storage.local.get("mbSubentidade", function (items) {
@@ -55,7 +55,7 @@ $(function () {
                         clearTimeout(waitForSubentidade);
                     }
                 }
-            })();
+            }());
         });
 
 
@@ -78,7 +78,7 @@ $(function () {
                     $("#messageGerar").text("Campos em falta!").css("color", "#FF0000");
                 }
             }
-        })();
+        }());
     });
 
     $("#copiarReferencia").on("click", function () {
