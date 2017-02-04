@@ -6,6 +6,8 @@ IfthenPay gateway for Google Chrome
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/rating/lagljhmfaccllemjdkhkkccofllmpgdh.svg?maxAge=7200)]()
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/d/lagljhmfaccllemjdkhkkccofllmpgdh.svg?maxAge=7200)]()
 
+[![Buy Me a Coffee at ko-fi.com](https://az743702.vo.msecnd.net/cdn/kofi1.png?v=f)](https://ko-fi.com/A606KD0)
+
 ![Multibanco](https://raw.githubusercontent.com/ifthenpay/omnipay-ifthenpay/master/mb.png)
 
 Multibanco is one Portuguese payment method that allows the customer to pay by bank reference.
