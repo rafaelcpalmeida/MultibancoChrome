@@ -16,8 +16,8 @@ $(function () {
         $("#entidadeConfiguracao").val(items.mbEntidade);
     });
 
-    chrome.storage.local.get("mbSubentidade", function (items) {
-        $("#subentidadeConfiguracao").val(items.mbSubentidade);
+    chrome.storage.local.get("mbSubEntidade", function (items) {
+        $("#subentidadeConfiguracao").val(items.mbSubEntidade);
     });
 
     $("#gerarReferencia").on("click", function () {
@@ -26,43 +26,28 @@ $(function () {
         var id = $("#idGerar").val();
         var valor = $("#valorGerar").val();
 
-        var entidade;
-        var subentidade;
-        var attempts = 0;
+        var entidadeGuardada;
+        var subEntidadeGuardada;
 
-        entidade = chrome.storage.local.get("mbEntidade", function (items) {
-            (function waitForEntidade() {
-                entidade = items.mbEntidade;
-                if (entidade < 0) {
-                    if (attempts < 5) {
-                        setTimeout(waitForEntidade, 500);
-                        attempts++;
-                    } else {
-                        clearTimeout(waitForEntidade);
-                    }
-                }
-            }());
+        entidadeGuardada = new Promise(function (resolve, reject) {
+            chrome.storage.local.get("mbEntidade", function (items) {
+                resolve(items.mbEntidade);
+            });
         });
 
-        chrome.storage.local.get("mbSubentidade", function (items) {
-            (function waitForSubentidade() {
-                subentidade = items.mbSubentidade;
-                if (subentidade < 0) {
-                    if (attempts < 5) {
-                        setTimeout(waitForSubentidade, 500);
-                        attempts++;
-                    } else {
-                        clearTimeout(waitForSubentidade);
-                    }
-                }
-            }());
+        subEntidadeGuardada = new Promise(function (resolve, reject) {
+            chrome.storage.local.get("mbSubEntidade", function (items) {
+                resolve(items.mbSubEntidade);
+            });
         });
 
+        Promise.all([entidadeGuardada, subEntidadeGuardada]).then(function (result) {
+            var entidade = result["0"];
+            var subEntidade = result["1"];
 
-        (function waitForReadyState() {
-            if (valor > 0 && id > 0 && entidade > 0 && subentidade > 0) {
+            if (valor > 0 && id > 0 && entidade > 0 && subEntidade > 0) {
                 if (valor < 999999) {
-                    var ref = mb.getPaymentRef(entidade, subentidade, id, valor);
+                    var ref = mb.getPaymentRef(entidade, subEntidade, id, valor);
 
                     $("#entidadeGerar").val(ref["entidade"]);
                     $("#referenciaGerar").val(ref["referencia"]);
@@ -71,14 +56,9 @@ $(function () {
                     $("#messageGerar").text("Valor máximo 999999!").css("color", "#FF0000");
                 }
             } else {
-                if (attempts < 5) {
-                    setTimeout(waitForReadyState, 500);
-                } else {
-                    clearTimeout(waitForReadyState);
-                    $("#messageGerar").text("Campos em falta!").css("color", "#FF0000");
-                }
+                $("#messageGerar").text("Campos em falta!").css("color", "#FF0000");
             }
-        }());
+        });
     });
 
     $("#copiarReferencia").on("click", function () {
@@ -106,10 +86,10 @@ $(function () {
 
         if (entidade > 0 && referencia > 0 && valor > 0) {
 
-            var subentidade = referencia.substring(0, 3);
+            var subEntidade = referencia.substring(0, 3);
             var id = referencia.substring(3, 7);
 
-            var referenciaGerada = mb.getPaymentRef(entidade, subentidade, id, valor);
+            var referenciaGerada = mb.getPaymentRef(entidade, subEntidade, id, valor);
 
             if (referencia.replace(/\s/g, "") === referenciaGerada["referencia"].replace(/\s/g, "")) {
                 $("#messageVerificar").text("Referência válida").css("color", "#007F00");
@@ -125,11 +105,13 @@ $(function () {
         $("#messageGuardar").empty();
 
         var entidade = $("#entidadeConfiguracao").val();
-        var subentidade = $("#subentidadeConfiguracao").val();
+        var subEntidade = $("#subentidadeConfiguracao").val();
 
-        if (entidade > 0 && subentidade > 0 && entidade.length === 5 && subentidade.length === 3) {
-            chrome.storage.local.set({ "mbEntidade": entidade }, function () { });
-            chrome.storage.local.set({ "mbSubentidade": subentidade }, function () { });
+        if (entidade > 0 && subEntidade > 0 && entidade.length === 5 && subEntidade.length === 3) {
+            chrome.storage.local.set({ "mbEntidade": entidade });
+            chrome.storage.local.set({ "mbSubEntidade": subEntidade });
+
+            $("#messageGuardar").text("Guardado com sucesso!").css("color", "#007F00");
         } else {
             $("#messageGuardar").text("Campos em falta!").css("color", "#FF0000");
         }
